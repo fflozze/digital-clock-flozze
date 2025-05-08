@@ -14,7 +14,9 @@ body {
 
 #container {
   display: flex;
+  align-items: center;
   flex-direction: column;
+  width: 50vw;
   padding-top: 25vh;
   font-family: var(--font-police);
 }
@@ -23,6 +25,7 @@ body {
   color: var(--color-text);
   font-size: 15rem;
   text-shadow: 0 0 15px var(--blur-color);
+  padding: 0 5% 0 5%;
 }
 
 #date {
