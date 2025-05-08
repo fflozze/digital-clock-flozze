@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Orbitron";
+  src: url(./font/Orbitron-VariableFont_wght.ttf);
+}
+
+:root {
+  --font-police: Orbitron;
+}
