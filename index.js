@@ -8,7 +8,7 @@ function time() {
   let time = new Date();
 
   // Formate l'heure en utilisant le format local français.
-  let heureMinuteSeconde = time;
+  let heureMinuteSeconde = time.toLocaleTimeString("fr-FR");
 
   // Met à jour le contenu de l'élément HTML avec l'ID "time".
   document.getElementById("time").innerHTML = heureMinuteSeconde;
@@ -30,7 +30,12 @@ function date() {
   let date = new Date();
 
   // Formate la date en utilisant le format local français avec des options pour afficher le jour de la semaine, le jour du mois, le mois et l'année.
-  let jourMoisAns = date;
+  let jourMoisAns = date.toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   // Met à jour le contenu de l'élément HTML avec l'ID "date".
   document.getElementById("date").innerHTML = jourMoisAns;
