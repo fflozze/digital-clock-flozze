@@ -1,35 +1,41 @@
+/* Importation des fichiers CSS externes pour les couleurs et les polices. */
 @import "./color.css";
 @import "./font.css";
 
+/* Réinitialisation des marges et des espacements pour tous les éléments. */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* Styles pour le corps de la page. */
 body {
-  background-color: var(--bg-color);
+  background-color: var(--bg-color); /* Utilisation de la couleur de fond définie dans les variables. */
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centrage horizontal du contenu. */
 }
 
-#container {
+/* Styles pour les conteneurs div. */
+div {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 50vw;
-  padding-top: 25vh;
-  font-family: var(--font-police);
+  align-items: center; /* Centrage vertical des éléments enfants. */
+  flex-direction: column; /* Disposition des éléments enfants en colonne. */
+  width: 50vw; /* Largeur de 50% de la largeur de la fenêtre. */
+  padding-top: 25vh; /* Espacement en haut de 25% de la hauteur de la fenêtre. */
+  font-family: var(--font-police); /* Utilisation de la police définie dans les variables. */
 }
 
+/* Styles pour l'élément d'affichage de l'heure. */
 #time {
-  color: var(--color-text);
-  font-size: 15rem;
-  text-shadow: 0 0 15px var(--blur-color);
-  padding: 0 5% 0 5%;
+  color: var(--color-text); /* Utilisation de la couleur de texte définie dans les variables. */
+  font-size: 15vw; /* Taille de police très grande pour l'heure. */
+  text-shadow: 0 0 15px var(--shadow-color); /* Effet 'ombre avec la couleur d'accentuation. */
+  padding: 0 5% 0 5%; /* Espacement horizontal de 5%. */
 }
 
+/* Styles pour l'élément d'affichage de la date. */
 #date {
-  color: var(--color-text);
-  font-size: 5rem;
-  text-shadow: 0 0 15px var(--blur-color);
+  color: var(--color-text); /* Utilisation de la couleur de texte définie dans les variables. */
+  font-size: 4vw; /* Taille de police grande pour la date. */
+  text-shadow: 0 0 15px var(--shadow-color); /* Effet de flou avec la couleur d'accentuation. */
 }

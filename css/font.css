@@ -1,8 +1,17 @@
+/* 
+Définition de la police personnalisée "Orbitron".
+Cette police est chargée à partir d'un fichier local pour une utilisation dans le projet.
+*/
+
 @font-face {
   font-family: "Orbitron";
   src: url(./font/Orbitron-VariableFont_wght.ttf);
 }
 
+/*
+ Définition des variables globales pour les polices utilisées dans le projet.
+*/
 :root {
+  /* Police principale utilisée pour le texte dans le projet. */
   --font-police: Orbitron;
 }

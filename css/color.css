@@ -1,5 +1,12 @@
+/*
+  Définition des variables globales pour les couleurs utilisées dans le projet.
+*/
+
 :root {
+  /* Couleur de fond utilisée pour les arrière-plans sombres. */
   --bg-color: rgb(11, 0, 36);
+  /* Couleur du texte principal, optimisée pour la lisibilité sur fond sombre. */
   --color-text: rgb(241, 255, 254);
-  --blur-color: rgb(0, 255, 238);
+  /* Couleur utilisée pour le l'ombre du texte, optimisée pour la lisibilité sur fond sombre. */
+  --shadow-color: rgb(0, 255, 238);
 }
