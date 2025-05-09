@@ -1,4 +1,4 @@
-# Horloge Digitale Flozze
+# Horloge Digitale Flozze 🕰️
 
 Une horloge digitale élégante et moderne affichant l'heure et la date en temps réel. ⏰📅
 
