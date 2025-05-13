@@ -72,7 +72,3 @@ jsdoc index.js
 ## Auteur 👨‍💻
 
 **Flozze**
-
-```
-
-```
