@@ -1,6 +1,6 @@
 /* Importation des fichiers CSS externes pour les couleurs et les polices. */
-@import "./color.css";
-@import "./font.css";
+@import "./root/color.css";
+@import "./root/font.css";
 
 /* Réinitialisation des marges et des espacements pour tous les éléments. */
 * {

@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
   <head>
-    <!-- Définition des métadonnées et du titre de la page. -->
+    <!-- Métadonnées de base -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Une horloge digitale moderne affichant l'heure et la date en format français" />
+    <meta name="author" content="Flozze" />
     <title>Horloge Digitale</title>
 
-    <!-- Lien vers le fichier CSS externe pour les styles de l'horloge. -->
-    <link rel="stylesheet" href="./css/clock.css" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/root/color.css" />
+    <link rel="stylesheet" href="./css/root/font.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Scripts -->
+    <!-- Utilisation de type="module" et defer pour un chargement optimal -->
+    <script type="module" defer src="./js/index.js"></script>
   </head>
 
   <body>
-    <!-- Section principale contenant l'affichage de l'horloge. -->
-    <section>
-      <div>
-        <!-- Paragraphe pour afficher l'heure. -->
-        <p id="time"></p>
+    <!-- Conteneur principal de l'horloge -->
+    <section class="clock-container">
+      <div class="clock-display">
+        <!-- Affichage de l'heure -->
+        <p id="time" class="time-display"></p>
 
-        <!-- Paragraphe pour afficher la date. -->
-        <p id="date"></p>
+        <!-- Affichage de la date -->
+        <p id="date" class="date-display"></p>
       </div>
     </section>
-
-    <!-- Lien vers le fichier JavaScript externe pour la logique de l'horloge. -->
-    <script src="./index.js"></script>
   </body>
 </html>

@@ -5,7 +5,7 @@ Cette police est chargée à partir d'un fichier local pour une utilisation dans
 
 @font-face {
   font-family: "Orbitron";
-  src: url(./font/Orbitron-VariableFont_wght.ttf);
+  src: url(../font/Orbitron-VariableFont_wght.ttf);
 }
 
 /*
