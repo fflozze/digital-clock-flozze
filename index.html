@@ -12,8 +12,12 @@
     <link rel="stylesheet" href="./css/root/color.css" />
     <link rel="stylesheet" href="./css/root/font.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
 
     <!-- Scripts -->
+    <!-- i18next pour les traductions (chargé de manière synchrone avant le module) -->
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.7.6/dist/umd/i18next.min.js"></script>
     <!-- Utilisation de type="module" et defer pour un chargement optimal -->
     <script type="module" defer src="./js/index.js"></script>
   </head>
@@ -26,6 +30,46 @@
         <a href="https://app.flozze.fr" class="back-button" aria-label="Retour à app.flozze.fr">
           <span class="back-arrow">←</span>
         </a>
+
+        <!-- Contrôles en haut à droite -->
+        <div class="controls-container">
+          <!-- Bouton de sélection de langue -->
+          <div class="control-group">
+            <button class="control-button language-button" id="languageButton" aria-label="Sélectionner la langue">
+              <span class="fi" id="currentLanguageFlag"></span>
+              <span class="control-text" id="languageText">Français</span>
+            </button>
+            <div class="dropdown-menu" id="languageDropdown">
+              <button class="dropdown-item" data-lang="fr">
+                <span class="fi fi-fr"></span>
+                <span>Français</span>
+              </button>
+              <button class="dropdown-item" data-lang="en">
+                <span class="fi fi-gb"></span>
+                <span>English</span>
+              </button>
+              <button class="dropdown-item" data-lang="de">
+                <span class="fi fi-de"></span>
+                <span>Deutsch</span>
+              </button>
+              <button class="dropdown-item" data-lang="es">
+                <span class="fi fi-es"></span>
+                <span>Español</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bouton de sélection de fuseau horaire -->
+          <div class="control-group">
+            <button class="control-button timezone-button" id="timezoneButton" aria-label="Sélectionner le fuseau horaire">
+              <span class="control-icon">🕐</span>
+              <span class="control-text" id="timezoneText">Paris - UTC+1</span>
+            </button>
+            <div class="dropdown-menu" id="timezoneDropdown">
+              <!-- Les options seront générées dynamiquement -->
+            </div>
+          </div>
+        </div>
     
     <!-- Conteneur principal de l'horloge -->
     <section class="clock-container">

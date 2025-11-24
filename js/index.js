@@ -3,6 +3,8 @@
  * @module index
  * @requires {module} time - Module de gestion de l'heure
  * @requires {module} date - Module de gestion de la date
+ * @requires {module} i18n - Module de gestion des traductions
+ * @requires {module} timezone - Module de gestion des fuseaux horaires
  * @version 1.0.0
  * @author Flozze
  */
@@ -10,6 +12,8 @@
 // Importation des fonctions depuis les modules
 import { time } from './time.js';
 import { date } from './date.js';
+import { changeLanguage, updateTranslations, initI18n, setDateUpdateCallback } from './i18n.js';
+import { timezones, getTimezone, setTimezone } from './timezone.js';
 
 /**
  * Initialise l'affichage de l'heure et sa mise à jour
@@ -87,10 +91,150 @@ function createParticles() {
   }
 }
 
-// Initialisation de l'application
-initApp();
+/**
+ * Initialise les contrôles de langue et fuseau horaire
+ * @function initControls
+ * @returns {void}
+ */
+function initControls() {
+  // Initialiser le menu de sélection de langue
+  const languageButton = document.getElementById('languageButton');
+  const languageDropdown = document.getElementById('languageDropdown');
+  const languageText = document.getElementById('languageText');
+  const currentLanguageFlag = document.getElementById('currentLanguageFlag');
+  const languageItems = languageDropdown.querySelectorAll('.dropdown-item');
 
-// Initialiser les particules au chargement
-window.addEventListener('load', () => {
-  createParticles();
+  // Mapping des langues avec les codes flag-icons
+  const languageMap = {
+    'fr': { name: 'Français', flag: 'fi-fr' },
+    'de': { name: 'Deutsch', flag: 'fi-de' },
+    'es': { name: 'Español', flag: 'fi-es' },
+    'en': { name: 'English', flag: 'fi-gb' }
+  };
+
+  // Fonction pour mettre à jour l'affichage de la langue
+  function updateLanguageDisplay(lang) {
+    const langInfo = languageMap[lang] || languageMap['fr'];
+    languageText.textContent = langInfo.name;
+    currentLanguageFlag.className = 'fi ' + langInfo.flag;
+  }
+
+  // Afficher la langue actuelle
+  const currentLang = localStorage.getItem('language') || 'fr';
+  updateLanguageDisplay(currentLang);
+
+  // Gérer l'ouverture/fermeture du menu de langue
+  languageButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    languageDropdown.classList.toggle('active');
+    const timezoneDropdown = document.getElementById('timezoneDropdown');
+    timezoneDropdown.classList.remove('active');
+  });
+
+  // Gérer la sélection de langue
+  languageItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const lang = item.getAttribute('data-lang');
+      changeLanguage(lang);
+      updateLanguageDisplay(lang);
+      languageDropdown.classList.remove('active');
+      time(); // Mettre à jour l'heure immédiatement
+      date(); // Mettre à jour la date immédiatement
+    });
+  });
+
+  // Initialiser le menu de sélection de fuseau horaire
+  const timezoneButton = document.getElementById('timezoneButton');
+  const timezoneDropdown = document.getElementById('timezoneDropdown');
+  const timezoneText = document.getElementById('timezoneText');
+
+  // Remplir le menu avec les fuseaux horaires
+  timezones.forEach(tz => {
+    const item = document.createElement('button');
+    item.className = 'dropdown-item';
+    item.setAttribute('data-timezone', tz.value);
+    item.textContent = `${tz.label} - ${tz.utc}`;
+    timezoneDropdown.appendChild(item);
+  });
+
+  // Afficher le fuseau horaire actuel
+  const currentTimezone = getTimezone();
+  let currentTzObj = timezones.find(tz => tz.value === currentTimezone);
+  
+  // Si le fuseau horaire n'est pas dans la liste, utiliser le premier
+  if (!currentTzObj) {
+    currentTzObj = timezones[0];
+    setTimezone(currentTzObj.value); // Réinitialiser au premier fuseau horaire de la liste
+  }
+  
+  updateTimezoneDisplay(currentTzObj);
+
+  // Gérer l'ouverture/fermeture du menu de fuseau horaire
+  timezoneButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    timezoneDropdown.classList.toggle('active');
+    languageDropdown.classList.remove('active');
+  });
+
+  // Gérer la sélection de fuseau horaire
+  timezoneDropdown.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dropdown-item')) {
+      e.stopPropagation();
+      const timezone = e.target.getAttribute('data-timezone');
+      setTimezone(timezone);
+      const selectedTz = timezones.find(tz => tz.value === timezone);
+      updateTimezoneDisplay(selectedTz);
+      timezoneDropdown.classList.remove('active');
+      time(); // Mettre à jour l'heure immédiatement
+      date(); // Mettre à jour la date immédiatement
+    }
+  });
+
+  // Fermer les menus en cliquant ailleurs
+  document.addEventListener('click', () => {
+    languageDropdown.classList.remove('active');
+    timezoneDropdown.classList.remove('active');
+  });
+}
+
+/**
+ * Met à jour l'affichage du fuseau horaire
+ * @function updateTimezoneDisplay
+ * @param {Object} tzObj - Objet fuseau horaire avec value, label et utc
+ * @returns {void}
+ */
+function updateTimezoneDisplay(tzObj) {
+  const timezoneText = document.getElementById('timezoneText');
+  if (!timezoneText) return;
+  
+  // Afficher le nom de la capitale avec l'UTC
+  timezoneText.textContent = `${tzObj.label} - ${tzObj.utc}`;
+}
+
+// Initialiser i18next puis l'application
+initI18n().then(() => {
+  // Définir le callback pour mettre à jour la date lors du changement de langue
+  setDateUpdateCallback(date);
+  
+  // Initialisation de l'application
+  initApp();
+  
+  // Initialiser les particules et les contrôles au chargement
+  window.addEventListener('load', () => {
+    createParticles();
+    initControls();
+    // Mettre à jour les traductions après le chargement
+    setTimeout(() => {
+      updateTranslations();
+    }, 100);
+  });
+}).catch(err => {
+  console.error('Erreur lors de l\'initialisation de i18next:', err);
+  // Continuer quand même avec l'application
+  initApp();
+  window.addEventListener('load', () => {
+    createParticles();
+    initControls();
+  });
 });

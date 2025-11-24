@@ -167,3 +167,181 @@ div {
   justify-content: center;
   font-family: var(--font-police);
 }
+
+/* Styles pour les contrôles en haut à droite */
+.controls-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+  font-family: var(--font-police);
+}
+
+.control-group {
+  position: relative;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-police);
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.language-button {
+  justify-content: flex-start;
+  min-width: 120px;
+}
+
+.language-button .fi {
+  flex-shrink: 0;
+}
+
+.timezone-button {
+  justify-content: flex-start;
+  min-width: 150px;
+}
+
+.control-button:hover {
+  transform: scale(1.05);
+  background: rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.control-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.control-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px var(--shadow-color);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  flex-direction: column;
+  z-index: 1001;
+  padding: 5px;
+}
+
+.dropdown-menu.active {
+  display: flex;
+}
+
+.dropdown-item {
+  padding: 12px 15px;
+  background: rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-police);
+  font-size: 0.9rem;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-item:hover {
+  background: rgba(102, 126, 234, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown-item:active {
+  transform: translateX(5px) scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour les drapeaux flag-icons */
+.fi {
+  display: inline-block;
+  width: 24px;
+  height: 18px; /* Ratio 4:3 (24/18 = 1.33) */
+  margin-right: 8px;
+  vertical-align: middle;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item span:not(.flag) {
+  flex: 1;
+}
+
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+  .controls-container {
+    top: 10px;
+    right: 10px;
+    gap: 5px;
+  }
+
+  .control-button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+
+  .control-text {
+    font-size: 0.8rem;
+  }
+
+  .dropdown-menu {
+    min-width: 180px;
+    max-height: 250px;
+  }
+
+  .fi {
+    width: 20px;
+    height: 15px;
+    margin-right: 6px;
+  }
+}
