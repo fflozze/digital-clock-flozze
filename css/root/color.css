@@ -1,0 +1,13 @@
+/*
+  Définition des variables globales pour les couleurs utilisées dans le projet.
+  Couleurs adaptées aux assets Flozze (tons violets/bleus).
+*/
+
+:root {
+  /* Couleur de fond avec dégradé violet/bleu proche des assets. */
+  --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* Couleur du texte principal, optimisée pour la lisibilité sur fond coloré. */
+  --color-text: rgb(255, 255, 255);
+  /* Couleur utilisée pour l'ombre du texte, avec une teinte violette/bleue. */
+  --shadow-color: rgba(255, 255, 255, 0.8);
+}

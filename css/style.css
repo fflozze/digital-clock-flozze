@@ -1,0 +1,126 @@
+/* Importation des fichiers CSS externes pour les couleurs et les polices. */
+@import "./root/color.css";
+@import "./root/font.css";
+
+/* Réinitialisation des marges et des espacements pour tous les éléments. */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles pour le corps de la page. */
+body {
+  background: var(--bg-color); /* Utilisation du dégradé de fond défini dans les variables. */
+  display: flex;
+  justify-content: center; /* Centrage horizontal du contenu. */
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Styles pour les conteneurs div. */
+div {
+  display: flex;
+  align-items: center; /* Centrage vertical des éléments enfants. */
+  flex-direction: column; /* Disposition des éléments enfants en colonne. */
+  font-family: var(--font-police); /* Utilisation de la police définie dans les variables. */
+}
+
+/* Styles spécifiques pour le conteneur d'affichage de l'horloge */
+.clock-display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw; /* Largeur de 50% de la largeur de la fenêtre. */
+  font-family: var(--font-police);
+}
+
+/* Styles pour l'élément d'affichage de l'heure. */
+#time {
+  color: var(--color-text); /* Utilisation de la couleur de texte définie dans les variables. */
+  font-size: 15vw; /* Taille de police très grande pour l'heure. */
+  text-shadow: 0 0 15px var(--shadow-color); /* Effet 'ombre avec la couleur d'accentuation. */
+  padding: 0 5% 0 5%; /* Espacement horizontal de 5%. */
+}
+
+/* Styles pour l'élément d'affichage de la date. */
+#date {
+  color: var(--color-text); /* Utilisation de la couleur de texte définie dans les variables. */
+  font-size: 4vw; /* Taille de police grande pour la date. */
+  text-shadow: 0 0 15px var(--shadow-color); /* Effet de flou avec la couleur d'accentuation. */
+}
+
+/* Styles pour les particules animées en arrière-plan */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-100px) translateX(50px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+/* Styles pour l'image Flozze */
+.flozze-container {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flozze-image {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: bounce 2s infinite ease-in-out;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.flozze-image:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Ajustement du conteneur de l'horloge pour inclure l'image */
+.clock-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
