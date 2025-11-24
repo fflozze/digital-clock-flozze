@@ -212,6 +212,24 @@ function updateTimezoneDisplay(tzObj) {
   timezoneText.textContent = `${tzObj.label} - ${tzObj.utc}`;
 }
 
+/**
+ * Initialise l'effet de parallaxe au mouvement de la souris
+ * @function initParallax
+ * @returns {void}
+ * @since 1.0.0
+ */
+function initParallax() {
+  document.addEventListener('mousemove', (e) => {
+    const container = document.querySelector('.clock-container');
+    if (!container) return;
+    
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    
+    container.style.transform = `translate(${x}px, ${y}px)`;
+  });
+}
+
 // Initialiser i18next puis l'application
 initI18n().then(() => {
   // Définir le callback pour mettre à jour la date lors du changement de langue
@@ -224,6 +242,7 @@ initI18n().then(() => {
   window.addEventListener('load', () => {
     createParticles();
     initControls();
+    initParallax();
     // Mettre à jour les traductions après le chargement
     setTimeout(() => {
       updateTranslations();
@@ -236,5 +255,6 @@ initI18n().then(() => {
   window.addEventListener('load', () => {
     createParticles();
     initControls();
+    initParallax();
   });
 });

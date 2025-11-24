@@ -123,6 +123,7 @@ div {
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
+  transition: transform 0.1s ease-out;
 }
 
 
