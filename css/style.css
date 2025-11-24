@@ -124,3 +124,46 @@ div {
   justify-content: center;
   padding: 2rem 0;
 }
+
+
+/* Style du bouton de retour */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  color: var(--color-text);
+  cursor: pointer;
+  font-family: var(--font-police);
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+  background: rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.back-arrow {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-text);
+  text-shadow: 0 0 15px var(--shadow-color);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-police);
+}

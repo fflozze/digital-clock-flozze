@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../Documents/statis site flozze.fr/app.flozze.fr"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "digital-clock-flozze-main"
+	}
+}
