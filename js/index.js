@@ -13,7 +13,7 @@
 import { time } from './time.js';
 import { date } from './date.js';
 import { changeLanguage, updateTranslations, initI18n, setDateUpdateCallback } from './i18n.js';
-import { timezones, getTimezone, setTimezone } from './timezone.js';
+import { timezones, getTimezone, setTimezone, getCurrentTimezoneInfo, getBrowserTimezone } from './timezone.js';
 
 /**
  * Initialise l'affichage de l'heure et sa mise à jour
@@ -157,18 +157,42 @@ function initControls() {
     item.textContent = `${tz.label} - ${tz.utc}`;
     timezoneDropdown.appendChild(item);
   });
+  
+  // Ajouter le fuseau horaire du navigateur s'il n'est pas dans la liste
+  const browserTimezone = getBrowserTimezone();
+  const browserTzInList = timezones.find(tz => tz.value === browserTimezone);
+  if (!browserTzInList) {
+    const browserTzInfo = getCurrentTimezoneInfo();
+    if (browserTzInfo && browserTzInfo.value === browserTimezone) {
+      const item = document.createElement('button');
+      item.className = 'dropdown-item';
+      item.setAttribute('data-timezone', browserTzInfo.value);
+      item.textContent = `${browserTzInfo.label} - ${browserTzInfo.utc}`;
+      // Insérer en haut de la liste
+      timezoneDropdown.insertBefore(item, timezoneDropdown.firstChild);
+    }
+  }
 
   // Afficher le fuseau horaire actuel
-  const currentTimezone = getTimezone();
-  let currentTzObj = timezones.find(tz => tz.value === currentTimezone);
+  const savedTimezone = localStorage.getItem('timezone');
   
-  // Si le fuseau horaire n'est pas dans la liste, utiliser le premier
-  if (!currentTzObj) {
-    currentTzObj = timezones[0];
-    setTimezone(currentTzObj.value); // Réinitialiser au premier fuseau horaire de la liste
+  // Si aucun fuseau horaire n'est sauvegardé, utiliser celui du navigateur
+  if (!savedTimezone) {
+    const browserTimezone = getBrowserTimezone();
+    setTimezone(browserTimezone);
   }
   
-  updateTimezoneDisplay(currentTzObj);
+  // Obtenir les informations du fuseau horaire actuel
+  const currentTzObj = getCurrentTimezoneInfo();
+  
+  // Si aucune information n'est trouvée, utiliser le premier de la liste
+  if (!currentTzObj) {
+    const firstTz = timezones[0];
+    setTimezone(firstTz.value);
+    updateTimezoneDisplay(firstTz);
+  } else {
+    updateTimezoneDisplay(currentTzObj);
+  }
 
   // Gérer l'ouverture/fermeture du menu de fuseau horaire
   timezoneButton.addEventListener('click', (e) => {
@@ -183,8 +207,10 @@ function initControls() {
       e.stopPropagation();
       const timezone = e.target.getAttribute('data-timezone');
       setTimezone(timezone);
-      const selectedTz = timezones.find(tz => tz.value === timezone);
-      updateTimezoneDisplay(selectedTz);
+      const selectedTzInfo = getCurrentTimezoneInfo();
+      if (selectedTzInfo) {
+        updateTimezoneDisplay(selectedTzInfo);
+      }
       timezoneDropdown.classList.remove('active');
       time(); // Mettre à jour l'heure immédiatement
       date(); // Mettre à jour la date immédiatement
