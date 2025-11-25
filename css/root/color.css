@@ -4,10 +4,23 @@
 */
 
 :root {
+  /* Gradient de fond principal (violet/bleu comme le site principal) */
+  --bg-gradient-start: #667eea;
+  --bg-gradient-end: #764ba2;
+  
   /* Couleur de fond avec dégradé violet/bleu proche des assets. */
-  --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-color: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  
+  /* Couleurs glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-hover: rgba(255, 255, 255, 0.3);
+  
   /* Couleur du texte principal, optimisée pour la lisibilité sur fond coloré. */
-  --color-text: rgb(255, 255, 255);
+  --color-text: rgba(255, 255, 255, 0.95);
   /* Couleur utilisée pour l'ombre du texte, avec une teinte violette/bleue. */
   --shadow-color: rgba(255, 255, 255, 0.8);
+  
+  /* Couleurs des particules */
+  --particle-color: rgba(255, 255, 255, 0.3);
 }

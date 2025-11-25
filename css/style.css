@@ -63,7 +63,7 @@ div {
 
 .particle {
   position: absolute;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--particle-color);
   border-radius: 50%;
   animation: float 15s infinite ease-in-out;
 }
@@ -137,11 +137,12 @@ div {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(102, 126, 234, 0.3);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--glass-border);
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   z-index: 1000;
   transition: all 0.3s ease;
@@ -151,10 +152,10 @@ div {
 }
 
 .back-button:hover {
-  transform: scale(1.05);
-  background: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(-3px) scale(1.05);
+  background: var(--glass-hover);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .back-arrow {
@@ -189,10 +190,10 @@ div {
   align-items: center;
   gap: 8px;
   padding: 10px 15px;
-  background: rgba(102, 126, 234, 0.3);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--glass-border);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   color: var(--color-text);
@@ -221,9 +222,9 @@ div {
 
 .control-button:hover {
   transform: scale(1.05);
-  background: rgba(102, 126, 234, 0.4);
+  background: var(--glass-hover);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .control-icon {
@@ -241,10 +242,10 @@ div {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  background: rgba(102, 126, 234, 0.3);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--glass-border);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   min-width: 200px;
@@ -262,10 +263,10 @@ div {
 
 .dropdown-item {
   padding: 12px 15px;
-  background: rgba(102, 126, 234, 0.3);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--glass-border);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   color: var(--color-text);
@@ -285,8 +286,8 @@ div {
 }
 
 .dropdown-item:hover {
-  background: rgba(102, 126, 234, 0.4);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--glass-hover);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateX(5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
